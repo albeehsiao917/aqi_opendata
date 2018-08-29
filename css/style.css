@@ -1,0 +1,68 @@
+/*global*/
+* {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Open Sans', 'Barlow Condensed', sans-serif;
+}
+body {
+  font-size: 16px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+}
+.container {
+  display: block;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+.clearfix:after, .row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.row {
+  margin: 0 -10px;
+}
+
+
+/*狀態對應表:
+'良好',
+'status-aqi2' '普通',
+'status-aqi3' '對敏感族群不健康',
+'status-aqi4' '對所有族群不健康',
+'status-aqi5' '非常不健康',
+'status-aqi6' '危害'*/
+.status-aqi2 {
+  background-color: #fff1bc;
+}
+.status-aqi3 {
+  background-color: #ffe578;
+}
+.status-aqi4 {
+  background-color: #ff7e00;
+}
+.status-aqi5 {
+  background-color: #ff6767;
+}
+.status-aqi6 {
+  background-color: #7e0023;
+}
+
+/*header*/
+header {
+	text-align: center;
+	margin: 50px 0;
+}
+.example {
+  margin: 36px 0;
+}
+.example .card {
+  text-align: center;
+  width: 100%;
+  margin-right: 8px;
+}
+.example .card:last-child {
+  margin-right: 0;
+}

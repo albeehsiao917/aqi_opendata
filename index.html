@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AQI Opendata</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- bootstrap -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+  <!-- font awesome -->
+  <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+  <!-- custom css -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <header>
+        <h1>空氣品質指標(AQI)</h1>
+        <div class="ref">
+          資料來源：
+          <a href="https://opendata.epa.gov.tw/Data/Contents/AQI/" 
+            target="_blank">
+            行政院環境保護署 - 環境資源資料開放平臺
+          </a>
+        </div>
+        <div class="example">
+          <h4>AQI說明與其對應顏色</h4>
+          <div class="d-flex justify-content-between">
+            <div v-for="(item, index) in exStatus" :key="index"
+              class="card" :class="`status-aqi${index+1}`">
+              {{item}}
+            </div>
+          </div>
+        </div>
+      </header>
+      
+
+      <select name="" id="" class="form-control mb-3" v-model='filter'>
+        <option value="">--- 請選擇城市 ---</option>
+        <option :value='item' v-for='item in filterCounty'>{{item}}</option>
+      </select>
+      <div>
+        <h4>關注城市</h4>
+        <div class="card-columns">
+          <aqi :aqi-data='item' v-for='item in stared' :key='item.SiteName' @favsite='removeFavSite(item)' star-fill='fas'></aqi>
+        </div>  
+      </div>
+      <hr>
+      <div>
+        <h4>所有城市</h4>
+        <div class="card-columns">
+          <aqi :aqi-data='item' v-for='item in filterSite' :key='item.SiteName' @favsite='addFavSite(item)' star-fill='far'></aqi>
+        </div>  
+      </div>
+    </div>
+  </div>
+
+  <!-- vue & jquery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- custom js -->
+  <script src="js/script.js"></script>
+  <!-- vue template -->
+  <script type="text/x-template" id='aqiComponentTemplate'>
+    <div class="card" :class='aqiRank'>
+      <div class="card-header">{{aqiData.County}} - {{aqiData.SiteName}}
+        <a href="#" class="float-right" @click.prevent='clickStar(aqiData)'>
+          <i class="fa-star" :class='starFill'></i>
+        </a>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled">
+          <li>AQI 指數: {{aqiData.AQI}}</li>
+          <li>PM2.5: {{aqiData['PM2.5']}}</li>
+          <li>說明: {{aqiData.Status}}</li>
+        </ul>
+        {{aqiData.PublishTime}}
+      </div>
+    </div>
+  </script>
+
+</body>
+</html>
+
+
+  
