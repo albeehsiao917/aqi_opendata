@@ -37,8 +37,7 @@ Vue.component('aqi',{
     }
   }
 });
-// API 來源
-// https://opendata.epa.gov.tw/Data/Contents/AQI/
+
 var app = new Vue({
   el: '#app',
   data: {
@@ -61,10 +60,9 @@ var app = new Vue({
   methods: {
     getData() {
       const vm = this;
-      const api = 'http://opendata2.epa.gov.tw/AQI.json';
+      const api = 'https://cors-anywhere.herokuapp.com/opendata2.epa.gov.tw/AQI.json';
       $.get(api).then(function( response ) {
         vm.data = response;
-        // console.log(response);
       });
     },
     addFavSite: function(item){
